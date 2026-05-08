@@ -1,8 +1,8 @@
+
 appId: com.pozitron.hepsiburada
 ---
 - runFlow:
-    file: common/go_to_basket.yaml
-
+    file: common/add_first_product.yaml
 
 # Eklenen ürünün sepette yer aldığı doğrulanır
 - assertVisible:
@@ -15,19 +15,11 @@ appId: com.pozitron.hepsiburada
 # Ürün fiyatı 
 - assertVisible:
     text: ".*TL"
-    above:
-      id: "productName"
 
+# Ürün görseline tıkla
 - tapOn:
-    text: "Ödemeye Geç"
+    id: "product_item_photo"
 
-# Giriş ekranına yönlendirildi
+# Ürün detaya dönüldüğünde "Sepete Ekle" butonu görünmeli
 - assertVisible:
-    text: "Giriş yap"
-
-- assertVisible:
-    text: "Üye olmadan devam et"
-
-- swipe:
-    direction: DOWN
-
+    id: "pdpAddToCart"

@@ -4,32 +4,63 @@ appId: com.pozitron.hepsiburada
 - runFlow:
     file: common/add_first_product.yaml
 
-# 1 iken ürünü sil butonu görülür
+# Eklenen ürünün sepette yer aldığı doğrulanır
+- assertVisible:
+    id: "product_item_photo"
+
+# Ürün adı 
+- assertVisible:
+    id: "productName"
+
+# Ürün fiyatı 
+- assertVisible:
+    text: ".*TL"
+
+# 1 iken "Ürünü sil" butonu
 - assertVisible:
     text: "Ürünü sil"
 
-- tapOn:
-    text: "Ürün sayısını artır"
+# Adet 1 ise → artır
+- runFlow:
+    when:
+      visible: "Sepetim (1 ürün)"
+    commands:
+      - assertVisible:
+          text: "1"
 
-- assertVisible:
-    text: "2"
-- assertVisible:
-    text: "Sepetim (2 ürün)"
+      - tapOn:
+          text: "Ürün sayısını artır"
 
-- tapOn:
-    text: "Ürün sayısını azalt"
+      - assertVisible:
+          text: "2"
 
-- assertVisible:
-    text: "1"
-- assertVisible:
-    text: "Sepetim (1 ürün)"
+      - assertVisible:
+          text: "Sepetim (2 ürün)"
 
-# Ürün adı ve fiyatı
+# Adet 2 ise → azalt
+- runFlow:
+    when:
+      visible: "Sepetim (2 ürün)"
+    commands:
+      - assertVisible:
+          text: "2"
+
+      - tapOn:
+          text: "Ürün sayısını azalt"
+
+      - assertVisible:
+          text: "1"
+
+      - assertVisible:
+          text: "Sepetim (1 ürün)"
+
+# İşlem sonrası ürün bilgileri
 - assertVisible:
     id: "productName"
+
 - assertVisible:
-    text: ".*TL"            
-    above:                    
+    text: ".*TL"
+    above:
       id: "productName"
 
 

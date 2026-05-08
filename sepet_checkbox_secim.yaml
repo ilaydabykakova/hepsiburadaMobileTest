@@ -1,30 +1,34 @@
 appId: com.pozitron.hepsiburada
 ---
 - runFlow:
-    file: common/add_first_product.yaml
+    file: common/go_to_basket.yaml
 
+# Eklenen ürünün sepette yer aldığı doğrulanır
+- assertVisible:
+    id: "product_item_photo"
+
+# Ürün adı
 - assertVisible:
     id: "productName"
 
+# Ürün fiyatı 
 - assertVisible:
-    text: ".*TL"            
-    above:                    
-      id: "productName"
+    text: ".*TL"
 
-# Checkbox seçili 
+# Checkbox seçili
 - assertVisible:
     text: "Ürün seçili"
 
-#  Seçimi kaldır
+# Seçimi kaldır
 - tapOn:
-     text: "Ürün seçili"
+    leftOf:
+        id: "product_item_photo"
 
-# Sepet fiyatı sıfırlanır / güncellenir
+# Seçim kaldırıldı
 - assertVisible:
     text: "Ürün seçili değil"
 
-
-
+# Seçilen ürün 0 ise fiyat 0,00 TL
 - runFlow:
     when:
       visible: "SEÇİLEN ÜRÜNLER (0)"

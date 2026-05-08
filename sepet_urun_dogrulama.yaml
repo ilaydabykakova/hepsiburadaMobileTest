@@ -2,17 +2,17 @@
 appId: com.pozitron.hepsiburada
 ---
 - runFlow:
-    file: common/add_first_product.yaml
+    file: common/go_to_basket.yaml
 
-# Ürün Görseli
+# Eklenen ürünün sepette yer aldığı doğrulanır
 - assertVisible:
     id: "product_item_photo"
 
-# Ürün adı 
+# Ürün adı
 - assertVisible:
     id: "productName"
 
-# Kart/Taksit bilgisi
+#  Kart/Taksit bilgisi
 - runFlow:
     when:
       visible:
@@ -21,14 +21,17 @@ appId: com.pozitron.hepsiburada
       - assertVisible:
           id: "productInfoLabel"
 
-# Ürün fiyatı ve formatı
+# Ürün fiyatı
 - assertVisible:
-    text: ".*TL"            
-    above:                    
+    text: ".*TL"
+    above:
       id: "productName"
 
+# Kargo bilgisi 
+- assertVisible:
+    id: "productCargoInfoTxt"
 
 # Sepet toplam fiyatı
 - assertVisible:
-    text: ".*TL"   
+    text: ".*TL"
     leftOf: "Ödemeye Geç"

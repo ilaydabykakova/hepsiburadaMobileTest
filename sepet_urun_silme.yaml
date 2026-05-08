@@ -3,13 +3,21 @@ appId: com.pozitron.hepsiburada
 - runFlow:
     file: common/add_first_product.yaml
 
-# Ürün adı ve fiyatı bilgisi
+# Eklenen ürünün sepette yer aldığı doğrulanır
+- assertVisible:
+    id: "product_item_photo"
+
+# Ürün adı
 - assertVisible:
     id: "productName"
-- assertVisible:
-    id: "product_price"
 
-# Sil butonu(Id'sini bulamadım.)
+# Ürün fiyatı
+- assertVisible:
+    text: ".*TL"
+    above:
+      id: "productName"
+
+# Sil
 - tapOn:
     text: "Ürünü sil"
 

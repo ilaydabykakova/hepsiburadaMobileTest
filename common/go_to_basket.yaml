@@ -1,8 +1,6 @@
 appId: com.pozitron.hepsiburada
 ---
-
-- launchApp:
-    clearState: true
+- launchApp
 
 - scrollUntilVisible:
     element:
@@ -10,7 +8,7 @@ appId: com.pozitron.hepsiburada
 
 - tapOn:
     id: "productBoxImage"
-    
+
 - tapOn: "Sepete ekle"
 
 - runFlow:
@@ -39,4 +37,3 @@ appId: com.pozitron.hepsiburada
       visible: "Sepete git"
     commands:
       - tapOn: "Sepete git"
-

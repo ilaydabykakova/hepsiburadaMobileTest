@@ -1,9 +1,21 @@
 appId: com.pozitron.hepsiburada
 ---
 - runFlow:
-    file: common/add_first_product.yaml
+    file: common/go_to_basket.yaml
 
-# Kargo etiketi
+# Eklenen ürünün sepette yer aldığı doğrulanır
+- assertVisible:
+    id: "product_item_photo"
+
+# Ürün adı
+- assertVisible:
+    id: "productName"
+
+# Ürün fiyatı
+- assertVisible:
+    text: ".*TL"
+
+# CKargo bedava etiketi varsa -> Uygulandı 
 - runFlow:
     when:
       visible: "500 TL üzerine kargo bedava"
@@ -11,15 +23,7 @@ appId: com.pozitron.hepsiburada
       - assertVisible:
           text: "Uygulandı"
 
+# Kargo bilgisi alanı görünür
 - assertVisible:
     id: "productCargoInfoTxt"
-
-# Ürün adı ve fiyatı
-- assertVisible:
-    id: "productName"
-
-- assertVisible:
-    text: ".*TL"            
-    above:                    
-      id: "productName"
 
