@@ -1,0 +1,30 @@
+appId: com.pozitron.hepsiburada
+---
+- runFlow:
+    file: common/add_first_product.yaml
+
+
+- assertVisible:
+    text: "1"
+
+- assertVisible:
+    text: "Sepetim (1 ürün)"
+
+# Ürün adedini arttır
+- tapOn:
+    text: "Ürün sayısını artır"
+
+- assertVisible:
+    text: "2"
+
+- assertVisible:
+    text: "Sepetim (2 ürün)"
+
+# Ürün adı ve fiyatı
+- assertVisible:
+    id: "productName"
+
+- assertVisible:
+    text: ".*TL"            
+    above:                    
+      id: "productName"

@@ -1,0 +1,28 @@
+appId: com.pozitron.hepsiburada
+---
+
+- launchApp:
+    clearState: true
+
+- scrollUntilVisible:
+    element:
+      point: 0%,47%
+
+- tapOn:
+    id: "productBoxImage"
+    
+- tapOn: "Sepete ekle"
+
+- runFlow:
+    when:
+      visible: "Ürün sepete başarılı bir şekilde eklenmiştir."
+    commands:
+        - tapOn:
+            id: "toolbarCartButton"
+
+- runFlow:
+    when:
+      visible: "Sepete git"
+    commands:
+      - tapOn: "Sepete git"
+

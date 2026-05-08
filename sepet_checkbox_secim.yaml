@@ -1,0 +1,33 @@
+appId: com.pozitron.hepsiburada
+---
+- runFlow:
+    file: common/add_first_product.yaml
+
+- assertVisible:
+    id: "productName"
+
+- assertVisible:
+    text: ".*TL"            
+    above:                    
+      id: "productName"
+
+# Checkbox seçili 
+- assertVisible:
+    text: "Ürün seçili"
+
+#  Seçimi kaldır
+- tapOn:
+     text: "Ürün seçili"
+
+# Sepet fiyatı sıfırlanır / güncellenir
+- assertVisible:
+    text: "Ürün seçili değil"
+
+
+
+- runFlow:
+    when:
+      visible: "SEÇİLEN ÜRÜNLER (0)"
+    commands:
+      - assertVisible:
+          text: "0,00 TL"

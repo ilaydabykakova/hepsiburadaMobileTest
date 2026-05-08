@@ -1,0 +1,34 @@
+
+appId: com.pozitron.hepsiburada
+---
+- runFlow:
+    file: common/add_first_product.yaml
+
+# Ürün Görseli
+- assertVisible:
+    id: "product_item_photo"
+
+# Ürün adı 
+- assertVisible:
+    id: "productName"
+
+# Kart/Taksit bilgisi
+- runFlow:
+    when:
+      visible:
+        id: "productInfoLabel"
+    commands:
+      - assertVisible:
+          id: "productInfoLabel"
+
+# Ürün fiyatı ve formatı
+- assertVisible:
+    text: ".*TL"            
+    above:                    
+      id: "productName"
+
+
+# Sepet toplam fiyatı
+- assertVisible:
+    text: ".*TL"   
+    leftOf: "Ödemeye Geç"

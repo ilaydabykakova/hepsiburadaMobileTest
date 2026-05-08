@@ -1,0 +1,18 @@
+appId: com.pozitron.hepsiburada
+---
+- runFlow:
+    file: common/add_first_product.yaml
+
+# Ürün adı ve fiyatı bilgisi
+- assertVisible:
+    id: "productName"
+- assertVisible:
+    id: "product_price"
+
+# Sil butonu(Id'sini bulamadım.)
+- tapOn:
+    text: "Ürünü sil"
+
+# Sepet boş
+- assertVisible:
+    text: "Sepetin şu an boş"

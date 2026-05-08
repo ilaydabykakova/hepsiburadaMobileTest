@@ -1,0 +1,25 @@
+appId: com.pozitron.hepsiburada
+---
+- runFlow:
+    file: common/add_first_product.yaml
+
+# Kargo etiketi
+- runFlow:
+    when:
+      visible: "500 TL üzerine kargo bedava"
+    commands:
+      - assertVisible:
+          text: "Uygulandı"
+
+- assertVisible:
+    id: "productCargoInfoTxt"
+
+# Ürün adı ve fiyatı
+- assertVisible:
+    id: "productName"
+
+- assertVisible:
+    text: ".*TL"            
+    above:                    
+      id: "productName"
+

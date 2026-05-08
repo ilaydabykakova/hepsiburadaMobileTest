@@ -1,0 +1,25 @@
+appId: com.pozitron.hepsiburada
+---
+- runFlow:
+    file: common/add_first_product.yaml
+
+# Ürün bilgisi
+- assertVisible:
+    id: "productName"
+- assertVisible:
+    id: "product_price"
+
+# Ödemeye geç
+- tapOn:
+    text: "Ödemeye Geç"
+
+# Giriş ekranına yönlendirildi
+- assertVisible:
+    text: "Giriş yap"
+
+- assertVisible:
+    text: "Üye olmadan devam et"
+
+- swipe:
+    direction: DOWN
+
